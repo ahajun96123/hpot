@@ -31,11 +31,11 @@ public class MemberService {
 		mav = new ModelAndView();
 		int result = mdao.memberJoin(memberVO);
 		if(result == 0) {
-			mav.addObject("msg", "회원가입실패");
+			mav.addObject("msg", "회원가입실패 다시시도해 주세요.");
 			mav.setViewName("login");
 
 		}else {
-			mav.addObject("msg", "회원가입");
+			mav.addObject("msg", "정상적으로 회원가입이 완료되었습니다.");
 			session.setAttribute("id", memberVO.getId());
 			mav.setViewName("main");
 		}
@@ -60,7 +60,7 @@ public class MemberService {
 	public ModelAndView memberLogout(MemberVO memberVO) {
 		mav = new ModelAndView();
 		session.invalidate();
-		mav.addObject("msg", "로그아웃");
+		mav.addObject("msg", "정상적으로 로그아웃 되었습니다.");
 		mav.setViewName("login");
 		return mav;
 	}
