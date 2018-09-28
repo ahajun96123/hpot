@@ -8,5 +8,6 @@
 		<typeAlias alias="chat" type="com.jkl.hpot.vo.ChatVO"/>
 		<typeAlias alias="chatMember" type="com.jkl.hpot.vo.ChatMemberVO"/>
 		<typeAlias alias="member" type="com.jkl.hpot.vo.MemberVO"/>
+		<typeAlias alias="comment" type="com.jkl.hpot.vo.CommentVO"/>
 	</typeAliases>
 </configuration>

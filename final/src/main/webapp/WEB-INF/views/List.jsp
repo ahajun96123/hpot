@@ -187,41 +187,69 @@ var arrayValue = null
 			</ul>
 
 			<div style="border-top: 1px solid orange; magin-top: 30px;">
-				<table id="video" style="margin-left: 50px;">
-					<c:forEach var="board" items="${boardList}" varStatus="status">
-						<c:if test="${i%j == 0 }">
-							<tr>
-						</c:if>
-						<td>
-							<div class="card border border-warning" id="card"
-								style="height: 260px; width: 260px; margin: 30px;">
-								<div class="card-body text-center">
-									<div class="videoplay">
-										<div>
-											<span style="color:#FF895A">${board.id}</span> <span>/${board.bSubject}</span>
-										</div>
-										<img class="btn-img" src="img/honeypot.jpg"
-											style="width: 220px; height: 160px;"
-											onclick="location='boardView?bNum=${board.bNum}'">
-										<div>
-											<div>
-												<span style="color:#FF9614">평점 ${board.bGrade}</span> <span>조회
-													${board.bReadcount}</span>
-											</div>
-											<div>
-												<span style="color: #6478FF">${board.bTag}</span>
+				<c:choose>
+					<c:when test="${which eq '음식' || which eq '영화'}">
+						<table id="video" style="margin-left: 50px;">
+							<c:forEach var="board" items="${boardList}">
+								<c:if test="${i%j == 0 }">
+									<tr>
+								</c:if>
+								<td>
+									<div class="card border border-warning" id="card"
+										style="height: 260px; width: 260px; margin: 30px;">
+										<div class="card-body text-center">
+											<div class="videoplay">
+												<div>
+													<span style="color: #FF895A">${board.id}</span> <span>/&nbsp;${board.bSubject}</span>
+												</div>
+												<img class="btn-img" src="img/honeypot.jpg"
+													style="width: 220px; height: 160px;"
+													onclick="location='boardView?bNum=${board.bNum}'">
+												<div>
+													<div>
+														<span style="color: #FF9614">평점 ${board.bGrade}</span> <span>조회
+															${board.bReadcount}</span>
+													</div>
+													<div>
+														<span style="color: #6478FF">${board.bTag}</span>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						<td>
-						<c:if test="${i%j == j-1 }">
-						</tr>
-						</c:if> <c:set var="i" value="${i+1 }" />
-					</c:forEach>
-				</table>
+								<td><c:if test="${i%j == j-1 }">
+										</tr>
+									</c:if> <c:set var="i" value="${i+1 }" />
+							</c:forEach>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<div class="container">
+							<table class="table">
+								<tr>
+									<th>작성자</th>
+									<th>제목</th>
+									<th>추천수</th>
+									<th>조회수</th>
+									<th>작성일</th>
+									<th>태그</th>
+								</tr>
+								<c:forEach var="board" items="${boardList}">
+									<tr>
+										<td style="color: #FF895A">${board.id}</td>
+										<td><a href="boardView?bNum=${board.bNum}">${board.bSubject }</a></td>
+										<td style="color: #28C28">${board.bLikecount}</td>
+										<td>${board.bReadcount }</td>
+										<td>${board.bDate }</td>
+										<td style="color: #6478FF">${board.bTag}</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
+
 			<div style="text-align: center; margin-right: 400px">
 				<%
 					if (nowPage <= 1) {

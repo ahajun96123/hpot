@@ -111,6 +111,9 @@
 							</td>
 						</tr>
 					</c:when>
+					<c:otherwise>
+						<input type="hidden" name="bCategory" value="핫딜">
+					</c:otherwise>
 				</c:choose>
 					<tr>
 						<th>제목</th>
@@ -146,6 +149,7 @@
 								<input type="hidden" value="${which}" name="bWhich">
 								<input type="hidden" value="admin" name="Id">
 								<input type="hidden" value="0.0" name="bGrade">
+								<input type="hidden" value="kantin2.jpg" name="bThumb">
 							</div>
 							<div style="margin-right:10px;float: right">
 								<input class="btn btn-warning" type="reset" onclick="reset()">

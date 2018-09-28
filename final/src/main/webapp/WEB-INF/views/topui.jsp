@@ -44,8 +44,14 @@
 				</c:choose>
 			<li class="nav-item">
 				<div class="btn-group">
-					<button class="btn btn-warning" type="button">로그인</button>
-					<button class="btn btn-info" type="button">회원가입</button>
+					<c:if test="${sessionScope.id == null }">
+						<button class="btn btn-warning" type="button">로그인</button>
+						<button class="btn btn-info" type="button">회원가입</button>
+					</c:if>
+					<c:if test="${sessionScope.id != null }">
+						<button class="btn btn-warning" type="button">${sessionScope.id }님 안녕하세요</button>
+						<form action="memberlogout" method="post"><button>로 그 아 웃 </button></form>
+					</c:if>
 				</div>
 			</li>
 		</ul>

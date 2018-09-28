@@ -336,13 +336,13 @@ public class HpotController {
 	}
 	
 	@RequestMapping(value = "/boardDelete", method = RequestMethod.GET)
-	public ModelAndView boardDelete(HttpServletRequest request,@ModelAttribute BoardVO boardVO) {
-		mav = new ModelAndView();
+	public String boardDelete(HttpServletRequest request,HttpServletResponse response,@ModelAttribute BoardVO boardVO) throws UnsupportedEncodingException {
+		response.setContentType("text/html;charset=UTF-8");
 		int view = Integer.parseInt(request.getParameter("bNum"));
 		boardVO.setbNum(view);
-		mav = bs.boardView(boardVO);
-		
-		return mav;
+		String which= URLEncoder.encode(request.getParameter("which"), "UTF-8");
+		bs.boardDelete(boardVO);
+		return "redirect:/boardList?which="+which;
 	}
 	
 

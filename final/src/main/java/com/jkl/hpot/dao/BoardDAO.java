@@ -95,4 +95,12 @@ public class BoardDAO{
 		
 	}
 	
+	public int boardDelete(BoardVO boardVO) {
+		return sqlSession.delete("Board.boardDelete", boardVO);
+	}
+	public int maxNumUpdate(BoardVO boardVO) {
+		return sqlSession.update("Board.maxNumUpdate",boardVO);
+		
+	}
+	
 }

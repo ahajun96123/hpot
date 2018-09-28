@@ -167,4 +167,13 @@ public class BoardService {
 		boardDAO.boardModify(boardVO);
 		return "redirect:/boardView?bNum="+boardVO.getbNum();
 	}
+	
+	public ModelAndView boardDelete(BoardVO boardVO) {
+		mav = new ModelAndView();
+		int result = boardDAO.boardDelete(boardVO);
+		if(result != 0) {
+			boardDAO.maxNumUpdate(boardVO);
+		}
+		return mav;
+	}
 }

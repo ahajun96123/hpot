@@ -100,7 +100,7 @@
 				</div>
 				<div style="margin-right: 10px; float: right">
 					<input class="btn btn-warning" type="button" value="삭제"
-						onclick="location='boardDelete?bNum=${view.bNum}'">
+						onclick="location='boardDelete?bNum=${view.bNum}&which=${view.bWhich}'">
 				</div>
 				<div style="margin-right: 10px; float: right">
 					<input class="btn btn-warning" type="button" value="목록"
