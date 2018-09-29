@@ -40,6 +40,17 @@ public class HpotController {
 	
 	
 	
+	@RequestMapping(value = "/Livechat", method = RequestMethod.GET)
+	public String liveChat() {
+
+		return "chat2";
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

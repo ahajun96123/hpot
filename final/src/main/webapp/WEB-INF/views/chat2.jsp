@@ -36,7 +36,7 @@
 </script>
 <script type="text/javascript">
 	var textarea = document.getElementById("messageWindow");
-	var webSocket = new WebSocket("ws://192.168.0.146:8040/hpot/broadcasting");
+	var webSocket = new WebSocket("ws://192.168.219.105:8040/hpot/broadcasting");
 	var inputMessage = document.getElementById("inputMessage");
 	webSocket.onerror = function(event) {
 		onError(event)
@@ -52,7 +52,7 @@
 	}
 	function onOpen(event) {
 		textarea.value += "연결 성공\n";
-		webSocket.send("'${sessionScope.id}'님이 입장하셨습니다.");
+		webSocket.send("'${sessionScope.id}'님이 입장하셨습니다.qsd");
 	}
 	function onError(event) {
 		alert(event.data);

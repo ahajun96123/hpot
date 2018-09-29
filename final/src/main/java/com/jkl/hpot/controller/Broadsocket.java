@@ -2,6 +2,7 @@ package com.jkl.hpot.controller;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,8 @@ public class Broadsocket {
 
 	private static Set<Session> clients = Collections
 			.synchronizedSet(new HashSet<Session>());
+	
+	HashMap<String,String> hashMap = new HashMap<>();
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
@@ -25,6 +28,14 @@ public class Broadsocket {
 		synchronized (clients) {
 			// Iterate over the connected sessions
 			// and broadcast the received message
+			String qsd = message.substring(message.length()-3, message.length());
+			if(qsd.equals("qsd")) {
+				message = message.substring(0, message.length()-3);
+				String userId = message.substring(0,message.indexOf("님이 입"));
+				String sessionId = session.getId();
+				System.out.println("아이디 : "+hashMap.get(sessionId));
+				hashMap.put(sessionId,userId);
+			}
 			for (Session client : clients) {
 				if (!client.equals(session)) {
 					client.getBasicRemote().sendText(message);
@@ -50,13 +61,16 @@ public class Broadsocket {
 
 	@OnClose
 	public void onClose(Session session) throws IOException {
+		String sessionId = session.getId();
+		String exitMessage = hashMap.get(sessionId)+"님이 퇴장하였습니다.";
+		hashMap.remove(sessionId);
 		// Remove session from the connected sessions set
 		clients.remove(session);
 		synchronized (clients) {
 			// Iterate over the connected sessions
 			// and broadcast the received message
 			for (Session client : clients) {
-				client.getBasicRemote().sendText("상대방이 나갔습니다.");
+				client.getBasicRemote().sendText(exitMessage);
 			}
 		}
 	}

@@ -35,7 +35,7 @@
 
 	<!-- 방 이름 / 방 만들기 / 방 나가기  -->
 	<table
-		style="width: 900px; background-image: url('image/chatBackGround.jpg');">
+		style="width: 900px; background-image: url('img/chatBackGround.jpg');">
 
 		<tr>
 			<td align="center" style="width: 600px; color: white">
@@ -136,12 +136,12 @@
 							<tr>
 								<th>참여인원</th>
 								<td><a href="#none"><img
-										src="image/paging/arrow_back.gif" onclick="count_back()"
+										src="img/paging/arrow_back.gif" onclick="count_back()"
 										width="13px" title="1명 감소"></a> <input type="text"
 									name="totalcount" value="4" size="2" readonly="readonly"
 									id="count" class="ui message"
 									style="height: 15px; font-weight: bold;"> <a
-									href="#none"><img src="image/paging/arrow_next.gif"
+									href="#none"><img src="img/paging/arrow_next.gif"
 										onclick="count_next()" width="13px" title="1명 증가"></a></td>
 							</tr>
 							<!-- 내용 입력 -->
