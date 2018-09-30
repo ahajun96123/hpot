@@ -33,8 +33,8 @@ public class Broadsocket {
 				message = message.substring(0, message.length()-3);
 				String userId = message.substring(0,message.indexOf("님이 입"));
 				String sessionId = session.getId();
-				System.out.println("아이디 : "+hashMap.get(sessionId));
 				hashMap.put(sessionId,userId);
+				System.out.println("아이디 : "+hashMap.get(sessionId));
 			}
 			for (Session client : clients) {
 				if (!client.equals(session)) {

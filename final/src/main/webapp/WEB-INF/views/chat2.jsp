@@ -11,6 +11,24 @@
 <body>
 	<fieldset>
 		<textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+		<div id="test" style="width: 500px; overflow-y: auto; height: 100px; border: 2px solid #09c;">
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="right">ddd</p>
+			<p align="left">ddd</p>
+		</div>
 		<br /> <input id="inputMessage" type="text" /> <input type="submit"
 			value="send" onclick="send()" />
 	</fieldset>
@@ -38,6 +56,7 @@
 	var textarea = document.getElementById("messageWindow");
 	var webSocket = new WebSocket("ws://192.168.219.105:8040/hpot/broadcasting");
 	var inputMessage = document.getElementById("inputMessage");
+	var elem = document.getElementById('messageWindow');
 	webSocket.onerror = function(event) {
 		onError(event)
 	};
@@ -48,7 +67,14 @@
 		onMessage(event);
 	};
 	function onMessage(event) {
-		textarea.value += event.data + "\n";
+		console.log(elem.scrollTop);
+		console.log(elem.scrollHeight);
+		if(elem.scrollTop+154 == elem.scrollHeight){
+			textarea.value += event.data + "\n";
+			elem.scrollTop = elem.scrollHeight;
+		} else{
+			textarea.value += event.data + "\n";
+		}
 	}
 	function onOpen(event) {
 		textarea.value += "연결 성공\n";
@@ -64,12 +90,18 @@
 			textarea.value += "나 : " + inputMessage.value + "\n";
 			webSocket.send(massage);
 			inputMessage.value = "";
+			var elem = document.getElementById('messageWindow');
+			elem.scrollTop = elem.scrollHeight;
 		}
 	}
 	//     채팅이 많아져 스크롤바가 넘어가더라도 자동적으로 스크롤바가 내려가게함
-	window.setInterval(function() {
+	/* window.setInterval(function() {
 		var elem = document.getElementById('messageWindow');
 		elem.scrollTop = elem.scrollHeight;
+	}, 0); */
+	window.setInterval(function() {
+		var elem2 = document.getElementById('test');
+		elem2.scrollTop = elem.scrollHeight;
 	}, 0);
 </script>
 </html>
